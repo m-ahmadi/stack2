@@ -26,6 +26,7 @@ function debug() {
 	shell.rm("-rf", OUT);
 	shell.mkdir("-p", OUT+"/css", OUT+"/js");
 	shell.cp("-r", INP+"/lib", INP+"/images", INP+"/fonts", OUT);
+	shell.mv(OUT+"/images/favicon.ico", OUT);
 
 	fs.writeFileSync(INP+"/html/links/root.htm",           ROOT,                "utf8");
 	fs.writeFileSync(INP+"/html/scripts/root.htm",         ROOT,                "utf8");
@@ -49,6 +50,7 @@ function release() {
 	shell.rm("-rf", OUT);
 	shell.mkdir("-p", OUT+"/css", OUT+"/js");
 	shell.cp("-r", INP+"/lib", INP+"/images", INP+"/fonts", OUT);
+	shell.mv(OUT+"/images/favicon.ico", OUT);
 
 	fs.writeFileSync(INP+"/html/links/root.htm",           ROOT,                       "utf8");
 	fs.writeFileSync(INP+"/html/scripts/root.htm",         ROOT,                       "utf8");
