@@ -1,0 +1,16 @@
+{
+	"presets": [["env", {
+		"targets": {
+			"browsers": [
+				"> 0.2%",
+				"last 20 versions",
+				"not dead"
+			]
+		},
+		"modules": false,
+		"loose": false
+	}]],
+	"ignore": [
+		"@*.js"
+	]
+}
