@@ -1,4 +1,5 @@
 node_modules/
+package-log.json
 .sass-cache/*
 src/lib/*/
 release/*
