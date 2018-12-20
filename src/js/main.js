@@ -5,13 +5,14 @@ require.config({
 	}
 });
 
-require(["./mediator"], (page) => {
+import page from "./mediator";
+
+alert(1);
+
+page.beforeReady();
+
+$(function () {
 	
-	page.beforeReady();
+	page.onReady();
 	
-	$(function () {
-		
-		page.onReady();
-		
-	});
 });

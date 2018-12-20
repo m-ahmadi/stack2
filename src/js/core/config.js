@@ -1,5 +1,5 @@
-define(["./root"], (root) => {
-	return {
-		ROOT: root
-	};
-});
+import root from "./root";
+
+export default {
+	ROOT: root
+};

@@ -32,12 +32,12 @@ function debug() {
 	fs.writeFileSync(INP+"/html/scripts/root.htm",         ROOT,                "utf8");
 	fs.writeFileSync(INP+"/html/scripts/app/root.htm",     ROOT,                "utf8");
 	fs.writeFileSync(INP+"/html/scripts/app/filename.htm", "main.js",           "utf8");
-	fs.writeFileSync(INP+"/js/core/root.js",               "define(() => '');", "utf8");
+	fs.writeFileSync(INP+"/js/core/root.js",               "export default '';", "utf8");
 
 	shell.exec(`htmlbilder ${INP}/html/ -o ${OUT}/index.html`);
 	shell.exec(`handlebars ${INP}/templates/template/ -f ${OUT}/js/templates.js -e hbs -m -o`);
 	shell.exec(`handlebars ${INP}/templates/partial/ -f ${OUT}/js/partials.js -p -e hbs -m -o`);
-	shell.exec(`babel ${INP}/js/ -d ${OUT}/js`);
+	shell.exec(`babel ${INP}/js/ -d ${OUT}/js`); // -s
 	shell.exec(`node-sass ${INP}/sass/style.scss > ${OUT}/css/style.css --output-style expanded`);
 }
 
@@ -56,7 +56,7 @@ function release() {
 	fs.writeFileSync(INP+"/html/scripts/root.htm",         ROOT,                       "utf8");
 	fs.writeFileSync(INP+"/html/scripts/app/root.htm",     ROOT,                       "utf8");
 	fs.writeFileSync(INP+"/html/scripts/app/filename.htm", FL,                         "utf8");
-	fs.writeFileSync(INP+"/js/core/root.js",               "define(() => '${ROOT}');", "utf8");
+	fs.writeFileSync(INP+"/js/core/root.js",               "export default '${ROOT}';", "utf8");
 
 	shell.exec(`htmlbilder ${INP}/html/ -o ./release/index.html`);
 	

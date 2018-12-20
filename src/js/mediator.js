@@ -1,18 +1,17 @@
-define([], () => {
-	const inst = u.extend( newPubSub() );
+const inst = u.extend( newPubSub() );
 	
-	function addCustomEvts() {
-		
-	}
-	function beforeReady() {
-		
-	}
-	function onReady() {
-		addCustomEvts();
-	}
+function addCustomEvts() {
 	
-	inst.beforeReady = beforeReady;
-	inst.onReady = onReady;
-	
-	return inst;
-});
+}
+function beforeReady() {
+	alert(2);
+}
+function onReady() {
+	alert(4);
+	addCustomEvts();
+}
+
+inst.beforeReady = beforeReady;
+inst.onReady = onReady;
+
+export default inst;

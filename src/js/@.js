@@ -1,14 +1,8 @@
-define([], () => {
-	const inst = u.extend( newPubSub() );
+const inst = u.extend( newPubSub() );
+
+
+inst.init = () => {
 	
-	
-	
-	
-	
-	
-	inst.init = () => {
-		
-	};
-	
-	return inst;
-});
+};
+
+export default inst;

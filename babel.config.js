@@ -5,7 +5,7 @@ const presets = [
       targets: {
 				browsers: [
 					"> 0.2%",
-					"last 20 versions",
+					"last 6 versions",
 					"not dead"
 				]
       },
@@ -16,7 +16,7 @@ const presets = [
   ],
 ];
 
-const ignore = [
-	"@*.js"
-];
-module.exports = { presets, ignore };
+module.exports = {
+	presets,
+	ignore: ["@*.js"]
+};
