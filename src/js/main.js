@@ -1,13 +1,11 @@
+import page from "./mediator";
+
 require.config({
 	baseUrl: "js/",
 	paths: {
 		lib: "../lib"
 	}
 });
-
-import page from "./mediator";
-
-alert(1);
 
 page.beforeReady();
 

@@ -37,8 +37,8 @@ function debug() {
 	shell.exec(`htmlbilder ${INP}/html/ -o ${OUT}/index.html`);
 	shell.exec(`handlebars ${INP}/templates/template/ -f ${OUT}/js/templates.js -e hbs -m -o`);
 	shell.exec(`handlebars ${INP}/templates/partial/ -f ${OUT}/js/partials.js -p -e hbs -m -o`);
-	shell.exec(`babel ${INP}/js/ -d ${OUT}/js`); // -s
-	shell.exec(`node-sass ${INP}/sass/style.scss > ${OUT}/css/style.css --output-style expanded`);
+	shell.exec(`babel ${INP}/js/ -d ${OUT}/js -s`);
+	shell.exec(`sass ${INP}/sass/style.scss:${OUT}/css/style.css --style expanded --sourcemap=auto`);
 }
 
 function release() {
