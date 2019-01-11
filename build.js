@@ -28,11 +28,11 @@ function debug() {
 	shell.cp("-r", INP+"/lib", INP+"/images", INP+"/fonts", OUT);
 	shell.mv(OUT+"/images/favicon.ico", OUT);
 
-	fs.writeFileSync(INP+"/html/links/root.htm",           ROOT,                "utf8");
-	fs.writeFileSync(INP+"/html/scripts/root.htm",         ROOT,                "utf8");
-	fs.writeFileSync(INP+"/html/scripts/app/root.htm",     ROOT,                "utf8");
-	fs.writeFileSync(INP+"/html/scripts/app/filename.htm", "main.js",           "utf8");
-	fs.writeFileSync(INP+"/js/core/root.js",               "export default '';", "utf8");
+	fs.writeFileSync(INP+"/html/links/root.htm", ROOT);
+	fs.writeFileSync(INP+"/html/scripts/root.htm", ROOT);
+	fs.writeFileSync(INP+"/html/scripts/app/root.htm", ROOT);
+	fs.writeFileSync(INP+"/html/scripts/app/filename.htm", "main.js");
+	fs.writeFileSync(INP+"/js/core/root.js", "export default '';", );
 
 	shell.exec(`htmlbilder ${INP}/html/ -o ${OUT}/index.html`);
 	shell.exec(`handlebars ${INP}/templates/template/ -f ${OUT}/js/templates.js -e hbs -o`);
@@ -52,11 +52,11 @@ function release() {
 	shell.cp("-r", INP+"/lib", INP+"/images", INP+"/fonts", OUT);
 	shell.mv(OUT+"/images/favicon.ico", OUT);
 
-	fs.writeFileSync(INP+"/html/links/root.htm",           ROOT,                       "utf8");
-	fs.writeFileSync(INP+"/html/scripts/root.htm",         ROOT,                       "utf8");
-	fs.writeFileSync(INP+"/html/scripts/app/root.htm",     ROOT,                       "utf8");
-	fs.writeFileSync(INP+"/html/scripts/app/filename.htm", FL,                         "utf8");
-	fs.writeFileSync(INP+"/js/core/root.js",               "export default '${ROOT}';", "utf8");
+	fs.writeFileSync(INP+"/html/links/root.htm", ROOT);
+	fs.writeFileSync(INP+"/html/scripts/root.htm", ROOT);
+	fs.writeFileSync(INP+"/html/scripts/app/root.htm", ROOT);
+	fs.writeFileSync(INP+"/html/scripts/app/filename.htm", FL);
+	fs.writeFileSync(INP+"/js/core/root.js", "export default '${ROOT}';");
 
 	shell.exec(`htmlbilder ${INP}/html/ -o ./release/index.html`);
 	
@@ -64,7 +64,7 @@ function release() {
 	const PARTIALS_FILE = `${OUT}/js/partials.tmp.js`;
 	shell.exec(`handlebars ${INP}/templates/template/ -f ${TEMPLATES_FILE} -e hbs -m -o`);
 	shell.exec(`handlebars ${INP}/templates/partial/ -f ${PARTIALS_FILE} -p -e hbs -m -o`);
-	fs.writeFileSync(`${OUT}/js/templates.js`, shell.cat(TEMPLATES_FILE, PARTIALS_FILE), "utf8");
+	fs.writeFileSync( `${OUT}/js/templates.js`, shell.cat(TEMPLATES_FILE, PARTIALS_FILE) );
 	shell.rm("-rf", TEMPLATES_FILE, PARTIALS_FILE);
 	
 	const DIR = `${OUT}/js/`;
