@@ -35,8 +35,8 @@ function debug() {
 	fs.writeFileSync(INP+"/js/core/root.js",               "export default '';", "utf8");
 
 	shell.exec(`htmlbilder ${INP}/html/ -o ${OUT}/index.html`);
-	shell.exec(`handlebars ${INP}/templates/template/ -f ${OUT}/js/templates.js -e hbs -m -o`);
-	shell.exec(`handlebars ${INP}/templates/partial/ -f ${OUT}/js/partials.js -p -e hbs -m -o`);
+	shell.exec(`handlebars ${INP}/templates/template/ -f ${OUT}/js/templates.js -e hbs -o`);
+	shell.exec(`handlebars ${INP}/templates/partial/ -f ${OUT}/js/partials.js -p -e hbs -o`);
 	shell.exec(`babel ${INP}/js/ -d ${OUT}/js -s`);
 	shell.exec(`chcp 1252 && sass ${INP}/sass/style.scss:${OUT}/css/style.css --style expanded --sourcemap=auto`);
 }
