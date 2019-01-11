@@ -9,12 +9,10 @@ gulp.task("part", shell.task([ p ]));
 gulp.task("temp", shell.task([ t ]));
 
 gulp.task("temp-w", () => {
-	gulp.start("temp");
-	gulp.watch("./src/templates/template/**", ["temp"]);
+	gulp.watch( "./src/templates/template/**", {ignoreInitial: false}, gulp.series("temp") );
 });
 gulp.task("part-w", () => {
-	gulp.start("part");
-	gulp.watch("./src/templates/partial/**", ["part"]);
+	gulp.watch( "./src/templates/partial/**", {ignoreInitial: false}, gulp.series("part") );
 });
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 // livereload
@@ -23,23 +21,26 @@ const h = "./dist/index.html";
 const c = "./dist/css/**/*.css";
 const j = "./dist/js/**/*.js";
 
-gulp.task("live-html", () => {
+gulp.task("live-html", cb => {
 	gulp.src(h)
 		.pipe( livereload() );
+	cb();
 });
-gulp.task("live-css", () => {
+gulp.task("live-css", cb => {
 	gulp.src(c)
 		.pipe( livereload() );
+	cb();
 });
-gulp.task("live-js", () => {
+gulp.task("live-js", cb => {
 	gulp.src(j)
 		.pipe( livereload() );
+	cb();
 });
 gulp.task("live", () => {
 	livereload.listen();
 	
-	gulp.watch(h, ["live-html"]);
-	gulp.watch(c, ["live-css"]);
-	gulp.watch(j, ["live-js"]);
+	gulp.watch( h, gulp.series("live-html") );
+	gulp.watch( c, gulp.series("live-css") );
+	gulp.watch( j, gulp.series("live-js") );
 });
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
