@@ -38,7 +38,7 @@ function debug() {
 	shell.exec(`handlebars ${INP}/templates/template/ -f ${OUT}/js/templates.js -e hbs -o`);
 	shell.exec(`handlebars ${INP}/templates/partial/ -f ${OUT}/js/partials.js -p -e hbs -o`);
 	shell.exec(`babel ${INP}/js/ -d ${OUT}/js -s`);
-	shell.exec(`chcp 1252 && sass ${INP}/sass/style.scss:${OUT}/css/style.css --style expanded --sourcemap=auto`);
+	shell.exec(`sass ${INP}/sass/style.scss:${OUT}/css/style.css`);
 }
 
 function release() {
@@ -73,5 +73,5 @@ function release() {
 	shell.rm("-rf", TMP);
 	shell.cp("-r", `${INP}/js/workers/`, `${OUT}/js/`);
 	
-	shell.exec(`node-sass ${INP}/sass/style.scss > ${OUT}/css/style.css --output-style compressed`);
+	shell.exec(`sass ${INP}/sass/style.scss:${OUT}/css/style.css --style=compressed --no-source-map`);
 };
