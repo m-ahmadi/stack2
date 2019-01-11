@@ -67,11 +67,15 @@ function release() {
 	fs.writeFileSync(`${OUT}/js/templates.js`, shell.cat(TEMPLATES_FILE, PARTIALS_FILE), "utf8");
 	shell.rm("-rf", TEMPLATES_FILE, PARTIALS_FILE);
 	
-	const TMP = `${OUT}/js/app.unbabeled.js`;
-	shell.exec(`r_js -o baseUrl=${INP}/js/ name=main out=${TMP} optimize=none`);
-	shell.exec(`babel ${TMP} -o ${OUT}/js/${FL} --minified`); // --minified
-	shell.rm("-rf", TMP);
-	shell.cp("-r", `${INP}/js/workers/`, `${OUT}/js/`);
+	const DIR = `${OUT}/js/`;
+	const FILE = `${OUT}/${FL}`;
+	const FILE2 = `${OUT}/js/${FL}`;
+	shell.exec(`babel ${INP}/js/ -d ${DIR}`);
+	shell.exec(`r_js -o baseUrl=${OUT}/js/ name=main out=${FILE} optimize=uglify`); // optimize=none
+	shell.rm("-rf", DIR);
+	shell.exec(`babel ${INP}/js/workers/ -d ${OUT}/js/workers/ --minified`); // --minified
+	shell.mv(FILE, DIR); // above babel command creates the necessary dir
+	fs.writeFileSync(FILE2, fs.readFileSync(FILE2, "utf-8")+'require(["main"]);'); // "\n"
 	
 	shell.exec(`sass ${INP}/sass/style.scss:${OUT}/css/style.css --style=compressed --no-source-map`);
 };
