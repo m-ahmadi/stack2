@@ -5,8 +5,8 @@ const shell = require("gulp-shell");
 const t = "handlebars ./src/templates/template/ -f ./dist/js/templates.js -e hbs -o";
 const p = "handlebars ./src/templates/partial/ -f ./dist/js/partials.js -p -e hbs -o";
 
-gulp.task("part", shell.task([ p ]));
-gulp.task("temp", shell.task([ t ]));
+gulp.task( "part", shell.task(p) );
+gulp.task( "temp", shell.task(t) );
 
 gulp.task("temp-w", () => {
 	gulp.watch( "./src/templates/template/**", {ignoreInitial: false}, gulp.series("temp") );
