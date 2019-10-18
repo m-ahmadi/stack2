@@ -75,7 +75,7 @@ function release() {
 	shell.rm('-rf', DIR);
 	shell.exec(`babel ${INP}/js/workers/ -d ${OUT}/js/workers/ --minified`); // --minified
 	shell.mv(FILE, DIR); // above babel command creates the necessary dir
-	fs.writeFileSync(FILE2, fs.readFileSync(FILE2, 'utf-8')+"require(['main']);"); // '\n'
+	fs.writeFileSync(FILE2, fs.readFileSync(FILE2, 'utf8')+"require(['main']);"); // '\n'
 	
 	shell.exec(`sass ${INP}/sass/style.scss:${OUT}/css/style.css --style=compressed --no-source-map`);
 };
