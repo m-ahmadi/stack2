@@ -1,7 +1,6 @@
 const fs = require('fs');
 const { delimiter } = require('path');
 const shell = require('shelljs');
-// console.log(process.argv);
 process.env.path += delimiter + './node_modules/.bin';
 
 const args = process.argv.slice(3);
