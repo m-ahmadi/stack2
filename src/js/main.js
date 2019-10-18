@@ -1,9 +1,9 @@
-import page from "./mediator";
+import page from './mediator';
 
 require.config({
-	baseUrl: "js/",
+	baseUrl: 'js/',
 	paths: {
-		lib: "../lib"
+		lib: '../lib'
 	}
 });
 

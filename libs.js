@@ -1,7 +1,7 @@
 module.exports = [
-	"requirejs",
-	"handlebars",
-	"jquery",
-	"util-ma",
-	"pubsub-ma"
+	'requirejs',
+	'handlebars',
+	'jquery',
+	'util-ma',
+	'pubsub-ma'
 ];
