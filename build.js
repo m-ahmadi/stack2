@@ -11,13 +11,6 @@ if ( args.includes('compile=debug') ) {
 }
 if ( args.includes('libs') ) libs();
 
-
-function libs() {
-	require('./libs.js').forEach(i => {
-		shell.cp('-r', `./node_modules/${i}`, './src/lib/');
-	});
-};
-
 function debug() {
 	const INP = './src';
 	const OUT = './dist';
@@ -78,4 +71,10 @@ function release() {
 	fs.writeFileSync(FILE2, fs.readFileSync(FILE2, 'utf8')+"require(['main']);"); // '\n'
 	
 	shell.exec(`sass ${INP}/sass/style.scss:${OUT}/css/style.css --style=compressed --no-source-map`);
-};
+}
+
+function libs() {
+	require('./libs.js').forEach(i => {
+		shell.cp('-r', `./node_modules/${i}`, './src/lib/');
+	});
+}
