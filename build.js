@@ -1,7 +1,8 @@
 const fs = require('fs-extra');
+const { delimiter } = require('path');
 const shell = require('shelljs');
 // console.log(process.argv);
-process.env.path += ';./node_modules/.bin';
+process.env.path += delimiter + './node_modules/.bin';
 
 const args = process.argv.slice(3);
 if ( args.includes('compile=debug') ) {
