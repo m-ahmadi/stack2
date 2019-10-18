@@ -3,10 +3,10 @@ const shell = require('shelljs');
 // console.log(process.argv);
 process.env.path += ';./node_modules/.bin';
 
-let args = process.argv.slice(3);
-if ( args.filter(i => i === 'compile=debug')[0] ) {
+const args = process.argv.slice(3);
+if ( args.includes('compile=debug') ) {
 	debug();
-} else if ( args.filter(i => i === 'compile=release')[0] ) {
+} else if ( args.includes('compile=release') ) {
 	release();
 }
 if ( args.includes('libs') ) libs();
