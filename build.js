@@ -1,4 +1,4 @@
-const fs = require('fs-extra');
+const fs = require('fs');
 const { delimiter } = require('path');
 const shell = require('shelljs');
 // console.log(process.argv);
